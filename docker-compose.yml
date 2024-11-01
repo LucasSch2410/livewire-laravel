@@ -42,27 +42,27 @@ services:
             - laravel
 
     # PgAdmin
-#    pgadmin:
-#        container_name: pgadmin
-#        image: dpage/pgadmin4
-#        restart: unless-stopped
-#        environment:
-#            PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-#            PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
-#        ports:
-#            - "8080:80"
-#        depends_on:
-#            - db
-#        networks:
-#            - laravel
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4
+        restart: unless-stopped
+        environment:
+            PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+            PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+        ports:
+            - "8080:80"
+        depends_on:
+            - db
+        networks:
+            - laravel
 
     # redis
-#    redis:
-#        container_name: redis
-#        image: redis:latest
-#        restart: unless-stopped
-#        networks:
-#            - laravel
+    redis:
+        container_name: redis
+        image: redis:latest
+        restart: unless-stopped
+        networks:
+            - laravel
 
 networks:
     laravel:
