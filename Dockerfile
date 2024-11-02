@@ -39,7 +39,11 @@ WORKDIR /var/www
 
 COPY . .
 
+RUN composer install
+
 RUN chmod -R 777 /var/www/storage
+
+RUN php artisan storage:link
 
 # Copy custom configurations PHP
 COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
