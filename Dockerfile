@@ -34,13 +34,18 @@ RUN mkdir -p /home/$user/.composer && \
 #    &&  rm -rf /tmp/pear \
 #    &&  docker-php-ext-enable redis
 
-# Set working directory
-WORKDIR /var/www/html
-
 # Copy custom configurations PHP
 COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
-RUN composer install
+# Set working directory
+WORKDIR /var/www
+
+# Copiar todo o código da aplicação, incluindo composer.json
+COPY . .
+
+# Instalar dependências do Composer
+RUN composer install --no-interaction --prefer-dist && \
+    chown -R $user:$user /var/www/vendor
 
 RUN php artisan migrate
 
