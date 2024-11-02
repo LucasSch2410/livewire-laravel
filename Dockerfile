@@ -37,6 +37,8 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www/html
 
+COPY . .
+
 RUN chmod -R 777 storage
 
 # Copy custom configurations PHP
