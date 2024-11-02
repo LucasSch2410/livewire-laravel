@@ -35,11 +35,11 @@ RUN mkdir -p /home/$user/.composer && \
 #    &&  docker-php-ext-enable redis
 
 # Set working directory
-WORKDIR /var/www/html
+WORKDIR /var/www
 
 COPY . .
 
-RUN chmod -R 777 /var/www/html/storage
+RUN chmod -R 777 /var/www/storage
 
 # Copy custom configurations PHP
 COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
