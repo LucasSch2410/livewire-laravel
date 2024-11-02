@@ -39,7 +39,9 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN chmod -R 777 storage
+RUN chmod -R www-data:www-data .
+
+RUN chmod -R 777 /var/www/html/storage
 
 # Copy custom configurations PHP
 COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
