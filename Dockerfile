@@ -47,6 +47,6 @@ COPY . .
 RUN composer install --no-interaction --prefer-dist && \
     chown -R $user:$user /var/www/vendor
 
-RUN php artisan migrate
+RUN php artisan migrate --force
 
 USER $user
