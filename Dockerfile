@@ -39,8 +39,6 @@ WORKDIR /var/www/html
 
 COPY . .
 
-RUN chmod -R www-data:www-data .
-
 RUN chmod -R 777 /var/www/html/storage
 
 # Copy custom configurations PHP
