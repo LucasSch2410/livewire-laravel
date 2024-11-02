@@ -39,7 +39,9 @@ WORKDIR /var/www
 
 COPY . .
 
-RUN composer install
+RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
+
+RUN php artisan optimize
 
 RUN chmod -R 777 /var/www/storage
 
