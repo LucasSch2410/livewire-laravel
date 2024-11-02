@@ -4,14 +4,8 @@ set -e
 
 echo "Deployment started ..."
 
-git fetch origin production
-git reset --hard origin/production
+git pull origin production
 
-# Install dependencies based on lock file
-docker exec app /usr/bin/composer install
-
-# Migrate database
-docker exec app php artisan migrate --force
+docker compose up -d --build
 
 echo "Deployment finished!"
-
