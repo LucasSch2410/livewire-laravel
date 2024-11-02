@@ -37,16 +37,6 @@ RUN mkdir -p /home/$user/.composer && \
 # Set working directory
 WORKDIR /var/www
 
-COPY . .
-
-RUN composer install --no-dev --no-interaction --prefer-dist --optimize-autoloader
-
-RUN php artisan optimize
-
-RUN chmod -R 777 /var/www/storage
-
-RUN php artisan storage:link
-
 # Copy custom configurations PHP
 COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
 
