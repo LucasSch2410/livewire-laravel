@@ -16,6 +16,11 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        $user = auth()->user();
+        if (!$user->tokenCan('server:update')) {
+            return $this->response('Você não tem acesso.', 401);
+        }
+
         $users = User::all();
         $userResource = UserResource::collection($users)->resolve();
         return $this->response('Retorno dos usuários com sucesso!', 200, $userResource);

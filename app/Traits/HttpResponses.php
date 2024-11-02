@@ -7,6 +7,7 @@ trait HttpResponses
     public function response(string $message, string|int $status, array|Model|Collection $data = [])
     {
         return response()->json([
+            'success' => true,
             'message' => $message,
             'status' => $status,
             'data' => $data
@@ -15,6 +16,7 @@ trait HttpResponses
     public function error(string $message, string|int $status, array $errors, array $data = [])
     {
         return response()->json([
+            'success' => false,
             'message' => $message,
             'status' => $status,
             'errors' => $errors,
