@@ -1,0 +1,16 @@
+### GET request to example server
+GET http://localhost:8000/api/v1/users
+    ?generated-in=PhpStorm
+
+###
+
+POST http://localhost:8000/api/v1/users
+Content-Type: application/json
+
+{
+    "name": "Lucas",
+    "email": "lucasshroeder2410@gmail.com",
+    "password": "123456"
+}
+
+###
