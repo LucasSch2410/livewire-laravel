@@ -29,10 +29,6 @@ RUN useradd -G www-data,root -u $uid -d /home/$user $user
 RUN mkdir -p /home/$user/.composer && \
     chown -R $user:$user /home/$user
 
-RUN composer install
-
-RUN php artisan migrate
-
 # Install redis
 #RUN pecl install -o -f redis \
 #    &&  rm -rf /tmp/pear \
@@ -43,5 +39,9 @@ WORKDIR /var/www
 
 # Copy custom configurations PHP
 COPY docker/php/custom.ini /usr/local/etc/php/conf.d/custom.ini
+
+RUN composer install
+
+RUN php artisan migrate
 
 USER $user
