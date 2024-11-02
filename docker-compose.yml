@@ -14,13 +14,13 @@ services:
         networks:
             - laravel
 
-    # nginx
+#     nginx
     nginx:
         container_name: nginx
         image: nginx:alpine
         restart: unless-stopped
         ports:
-            - "8000:80"
+            - "80:80"
         volumes:
             - ./:/var/www
             - ./docker/nginx/:/etc/nginx/conf.d/
@@ -42,27 +42,27 @@ services:
             - laravel
 
     # PgAdmin
-    pgadmin:
-        container_name: pgadmin
-        image: dpage/pgadmin4
-        restart: unless-stopped
-        environment:
-            PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
-            PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
-        ports:
-            - "8080:80"
-        depends_on:
-            - db
-        networks:
-            - laravel
-
-    # redis
-    redis:
-        container_name: redis
-        image: redis:latest
-        restart: unless-stopped
-        networks:
-            - laravel
+#    pgadmin:
+#        container_name: pgadmin
+#        image: dpage/pgadmin4
+#        restart: unless-stopped
+#        environment:
+#            PGADMIN_DEFAULT_EMAIL: ${PGADMIN_EMAIL}
+#            PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_PASSWORD}
+#        ports:
+#            - "8080:80"
+#        depends_on:
+#            - db
+#        networks:
+#            - laravel
+#
+#    # redis
+#    redis:
+#        container_name: redis
+#        image: redis:latest
+#        restart: unless-stopped
+#        networks:
+#            - laravel
 
 networks:
     laravel:
