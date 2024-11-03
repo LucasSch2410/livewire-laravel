@@ -6,6 +6,8 @@ echo "Deployment started ..."
 
 git pull origin production
 
-docker compose up -d --build
+composer install --ignore-platform-reqs
+
+docker exec app php artisan migrate
 
 echo "Deployment finished!"
