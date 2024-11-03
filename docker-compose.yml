@@ -20,7 +20,7 @@ services:
             context: .
             dockerfile: Dockerfile  # Usa o mesmo Dockerfile
         ports:
-            -   8080:8080
+            - 8080:8080
         restart: unless-stopped
         working_dir: /var/www/
         volumes:
