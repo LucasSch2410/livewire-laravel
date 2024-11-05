@@ -31,7 +31,7 @@ services:
         networks:
             - laravel
 
-#     nginx
+    # nginx
     nginx:
         container_name: nginx
         image: nginx:alpine
@@ -74,12 +74,14 @@ services:
 #            - laravel
 #
 #    # redis
-#    redis:
-#        container_name: redis
-#        image: redis:latest
-#        restart: unless-stopped
-#        networks:
-#            - laravel
+    redis:
+        container_name: redis
+        image: redis:latest
+        ports:
+            - "6379:6379"
+        restart: unless-stopped
+        networks:
+            - laravel
 
 networks:
     laravel:

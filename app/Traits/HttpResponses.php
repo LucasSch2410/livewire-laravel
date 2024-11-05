@@ -13,7 +13,7 @@ trait HttpResponses
             'data' => $data
         ], $status);
     }
-    public function error(string $message, string|int $status, array $errors, array $data = [])
+    public function error(string $message, string|int $status, array $errors = [], array $data = [])
     {
         return response()->json([
             'success' => false,

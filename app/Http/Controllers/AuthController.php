@@ -2,27 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Traits\HttpResponses;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class AuthController extends Controller
 {
+    use HttpResponses;
     public function login(Request $request)
     {
-        $request->validate([
+        $payload = $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
         ]);
 
-        if (Auth::attempt($request->only('email', 'password'))) {
-            $user = Auth::user();
-
-            // Criar token após o login
-            $token = $user->createToken('token-name', ['server:update'])->plainTextToken;
-
-            return response()->json(['token' => $token], 200);
+        if (!Auth::attempt($payload)) {
+            return $this->error('Credenciais inválidas.', 401);
         }
 
-        return response()->json(['message' => 'Credenciais inválidas'], 401);
+        $user = Auth::user();
+
+        // Criar token após o login, com as permissões que desejar
+        $token = $user->createToken('token-name', ['server:update'])->plainTextToken;
+
+        return $this->response('Logado.', 200, ['token' => $token]);
     }
 }
