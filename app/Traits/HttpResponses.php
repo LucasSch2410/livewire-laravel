@@ -2,9 +2,11 @@
 namespace App\Traits;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\JsonResponse;
+
 trait HttpResponses
 {
-    public function response(string $message, string|int $status, array|Model|Collection $data = [])
+    public function response(string $message, string|int $status, array|Model|Collection $data = []): JsonResponse
     {
         return response()->json([
             'success' => true,
@@ -13,7 +15,7 @@ trait HttpResponses
             'data' => $data
         ], $status);
     }
-    public function error(string $message, string|int $status, array $errors = [], array $data = [])
+    public function error(string $message, string|int $status, array $errors = [], array $data = []): JsonResponse
     {
         return response()->json([
             'success' => false,
