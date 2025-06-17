@@ -6,7 +6,15 @@ use Illuminate\Http\JsonResponse;
 
 trait HttpResponses
 {
-    public function response(string $message, string|int $status, array|Model|Collection $data = []): JsonResponse
+    /**
+     * Prepare a success response.
+     *
+     * @param string $message The response message.
+     * @param string|int $status The HTTP status code.
+     * @param array|Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection $data Optional data to include in the response.
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function response(string $message, string|int $status, array|Model|\Illuminate\Database\Eloquent\Collection|\Illuminate\Support\Collection $data = []): JsonResponse
     {
         return response()->json([
             'success' => true,
@@ -15,7 +23,17 @@ trait HttpResponses
             'data' => $data
         ], $status);
     }
-    public function error(string $message, string|int $status, array $errors = [], array $data = []): JsonResponse
+
+    /**
+     * Prepare an error response.
+     *
+     * @param string $message The error message.
+     * @param string|int $status The HTTP status code.
+     * @param array $errors Optional array of specific errors.
+     * @param array|\Illuminate\Support\Collection $data Optional data to include in the response.
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function error(string $message, string|int $status, array $errors = [], array|\Illuminate\Support\Collection $data = []): JsonResponse
     {
         return response()->json([
             'success' => false,
