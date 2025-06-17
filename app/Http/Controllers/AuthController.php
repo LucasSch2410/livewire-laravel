@@ -18,14 +18,14 @@ class AuthController extends Controller
         ]);
 
         if (!Auth::attempt($payload)) {
-            return $this->error('Credenciais inválidas.', 401);
+            return $this->error('Invalid credentials.', 401);
         }
 
         $user = Auth::user();
 
         // Criar token após o login, com as permissões que desejar
-        $token = $user->createToken('token-name', ['server:update'])->plainTextToken;
+        $token = $user->createToken('auth_token', ['server:update'])->plainTextToken;
 
-        return $this->response('Logado.', 200, ['token' => $token]);
+        return $this->response('Logged in successfully.', 200, ['token' => $token]);
     }
 }
